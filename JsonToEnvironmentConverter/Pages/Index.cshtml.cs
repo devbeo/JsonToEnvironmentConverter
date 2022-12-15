@@ -29,6 +29,8 @@ namespace JsonToEnvironmentConverter.Pages
         [BindProperty] public string Separator { get; set; } = "Colon";
 
         [BindProperty] public string YamlFormat { get; set; } = "DockerCompose";
+        [BindProperty] public string Prefix { get; set; } = "";
+
 
 
         public string Environment { get; set; }
@@ -81,7 +83,7 @@ namespace JsonToEnvironmentConverter.Pages
                         .Where(pair => IncludeEmpty || !string.IsNullOrEmpty(pair.Value))
                         .OrderBy(pair => pair.Key))
                     {
-                        string key2 = key;
+                        string key2 = Prefix + key;
                         if (Separator == "Underscore") 
                         {
                             key2 = key2.Replace(":", "__");
